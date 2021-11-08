@@ -1,0 +1,103 @@
+.formCenter {
+    width: 50%;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: var(--bs-gray-500);
+    overflow: auto;
+    margin: auto;
+  }
+  
+  .formTitle {
+    color: #707c8b;
+    font-weight: 300;
+  }
+  
+  .formTitleLink {
+    color: #707c8b;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.7em;
+  }
+  
+  .formTitleLink:first-child {
+    margin-left: 0;
+  }
+  
+  .formTitleLink-active {
+    color: white;
+    border-bottom: 1px solid #6b5b95;
+  }
+  
+  .formField {
+    margin-bottom: 40px;
+    width: auto;
+  }
+  
+  .formFieldLabel {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: white;
+  }
+  .formFieldInput {
+    width: 85%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    border-bottom: 1px solid #445366;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  
+  .formFieldInput::placeholder {
+    color: #616e7f;
+  }
+  
+  .formFieldButton {
+    background-color: #6b5b95;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    font-size: 0.8em;
+    font-weight: 500;
+  }
+  
+  .formFieldLink {
+    color: #66707d;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+  
+  .formFieldLink:hover
+  {
+    color: var(--bs-cyan);
+    text-decoration: none;
+  }
+
+  .formFieldCheckboxLabel {
+    color: #646f7d;
+    font-size: 0.9em;
+  }
+  
+  .formFieldCheckbox {
+    position: relative;
+  }
+  
+  .formFieldTermsLink {
+    display: inline-block;
+  }
+
+  .formFieldTermsLink::hover
+  {
+    color: var(--bs-cyan);
+    text-decoration: none;
+  }
+  
+  .facebookButton, .instagramButton, .googleButton
+  {
+    margin: auto;
+    width: auto;
+  } 

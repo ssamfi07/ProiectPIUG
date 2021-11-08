@@ -16,7 +16,9 @@
   --purple-1: #190061;
   --purple-2: #240090;
   --purple-3: #3500D3;
+  --bs-cyan: #0dcaf0;
   --gray: #282828;
+  --bs-gray-700-rgb:73, 80, 87;
 
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -27,7 +29,7 @@
   --bs-yellow: #ffc107;
   --bs-green: #198754;
   --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
+  
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
@@ -83,8 +85,18 @@
   }
 }
 
+/* hide scrollbar */
+
+*{
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
+  height: 100%;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
@@ -94,6 +106,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  display: block;
 }
 
 hr {
@@ -3037,12 +3050,12 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color:var(--purple-1);
+  border-color: var(--purple-dark);
 }
 .btn-primary:hover {
-  color: #fff;
-  background-color: #0b5ed7;
+  color: var(--bs-cyan);
+  background-color: var(--purple-3);
   border-color: #0a58ca;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
@@ -3988,8 +4001,8 @@ textarea.form-control-lg {
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: #fff;
+  color: var(--bs-cyan);
+  background-color: var(--bs-cyan);
   border-color: #dee2e6 #dee2e6 #fff;
 }
 .nav-tabs .dropdown-menu {
@@ -4005,7 +4018,7 @@ textarea.form-control-lg {
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #fff;
+  color: var(--bs-cyan);
   background-color: #0d6efd;
 }
 
@@ -4496,7 +4509,7 @@ textarea.form-control-lg {
 }
 .navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active {
-  color: #fff;
+  color:var(--bs-cyan);
 }
 .navbar-dark .navbar-toggler {
   color: rgba(255, 255, 255, 0.55);
@@ -4551,6 +4564,7 @@ textarea.form-control-lg {
 .card-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
+  background-color: var(--bs-gray-200);
 }
 
 .card-title {
@@ -4582,7 +4596,7 @@ textarea.form-control-lg {
 
 .card-footer {
   padding: 0.5rem 1rem;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: var(--bs-gray-200);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 .card-footer:last-child {
@@ -7864,7 +7878,7 @@ textarea.form-control-lg {
 
 .bg-body {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
+  background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity));
 }
 
 .bg-transparent {
