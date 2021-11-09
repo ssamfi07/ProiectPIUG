@@ -6,6 +6,7 @@ import About from './pages/About'
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
+import Item from './pages/Item'
 
 class App extends Component {
 
@@ -17,6 +18,8 @@ class App extends Component {
             <Route path = '/' element = {<Home />} />
             <Route path = '/about' element = {<About />} />
             <Route path = "/contact" element={<Contact />} />
+
+            <Route path = "/item/:name" element={<Item />} />
 
             <Route path = '/login' element = {<Login />} />
             <Route path = "/register" element={<Register />} />

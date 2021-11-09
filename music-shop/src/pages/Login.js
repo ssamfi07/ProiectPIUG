@@ -3,19 +3,14 @@
 import React, {Component} from "react";
 import Navbar from '../components/navbar'
 import './styles.css'
-
-import { NavLink } from "react-router-dom";
-
-import { GoogleLogin } from 'react-google-login';
-import { FacebookLoginButton } from "react-social-login-buttons";
 import SignInForm from "../components/sigin";
 
-const responseGoogle = (response) => 
-{
-    console.log(response);
-}
+// const responseGoogle = (response) => 
+// {
+//     console.log(response);
+// }
 
-const clientId = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
+// const clientId = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
 
 export default class Login extends Component
 {
@@ -37,9 +32,9 @@ export default class Login extends Component
             </head>
             <body>
                 <Navbar />
-                <header class="bg-light py-4">
-                    <div class="container px-5 px-lg-5 my-5 py-lg-3">
-                        <div class="text-center text-info">
+                <header class="bg-light">
+                    <div class="container px-5 px-lg-5 my-5">
+                        <div class="text-center text-black-50">
                             <h1 class="display-4 fw-bolder">Log in to buy music!</h1>
                             
                         </div>

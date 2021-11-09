@@ -26,11 +26,10 @@ export default class Register extends Component
             </head>
             <body>
                 <Navbar />
-                <header class="bg-light py-4">
-                    <div class="container px-5 px-lg-5 my-5 py-lg-3">
-                        <div class="text-center text-info">
+                <header class="bg-light">
+                    <div class="container px-5 px-lg-5 my-5">
+                        <div class="text-center text-black-50">
                             <h1 class="display-4 fw-bolder">Join our club!</h1>
-                            
                         </div>
                         <SignUpForm />
                         </div>

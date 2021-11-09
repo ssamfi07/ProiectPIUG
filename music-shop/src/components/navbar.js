@@ -7,6 +7,8 @@ import { NavLink } from "react-router-dom";
 
 import { GoogleLogout } from 'react-google-login';
 
+import Metallica from '../../public/assets/fonts/PastorofMuppets.TTF'
+
 const responseGoogle = (response) => 
 {
     console.log(response);
@@ -21,7 +23,22 @@ export default class Navbar extends Component
     return (
         <nav class="navbar navbar-expand-lg navbar-dark bg-black">
                     <div class="container px-4 px-lg-5">
-                        <Button href = "/" variant="dark">Music Shop</Button>
+                        <style type = "text/css">
+                            {`
+                                .btn-outline-light
+                                {
+                                    color: rgba(255, 255, 255, 0.55);
+                                    border-width: 0;
+                                }
+                                .btn-outline-light:hover
+                                {
+                                    background-color: var(--purple-1);
+                                    color: #fff;
+                                    border-color: #fff;
+                                }
+                            `}
+                        </style>
+                        <Button href = "/" variant="outline-light">Music Shop</Button>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -48,8 +65,8 @@ export default class Navbar extends Component
                             </form>
                         </div>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" aria-current="page" to = "/login">Log In</NavLink></li>
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" to = "/register">Sign Up</NavLink></li>
+                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" to = "/login">Log In</NavLink></li>
+                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="btn btn-primary" to = "/register">Sign Up</NavLink></li>
                                 {false && <GoogleLogout
                                     clientId={clientId}
                                     buttonText="Logout"

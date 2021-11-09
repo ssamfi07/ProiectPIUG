@@ -1,37 +1,95 @@
 // Home.js
 
-import React, {Component} from "react";
+import React from "react";
+import ItemCard from "../components/itemCard";
 import Navbar from '../components/navbar'
 import './styles.css'
+
+import Resizer from "react-image-file-resizer";
 
 let k = 0;
 let imagesArray = {}
 
-function images()
+// normally arrays are fetched from db
+
+let namesArray = ["Slayer", "Megadeth", "Anthrax", "Metallica", "Death", "Napalm Death", "Jinjer", "Truda"];
+
+let pricesArray = [40.00, 18.00, 25.00, 40.00, 25.00, 120.00, 18.00, 40.00];
+
+let oldPricesArray = [0, 20.00, 50.00, 0, 50.00, 0, 0, 0];
+
+let badgesArray = [0, 1, 1, 0, 1, 0, 1, 0];
+
+let data = [];
+
+function createData()
 {
-    
+    for(let i = 0; i < 8; ++i)
+    {
+        data[i] = {
+            image: imagesArray[i], 
+            name: namesArray[i], 
+            price: pricesArray[i],
+            oldPrice: oldPricesArray[i],
+            badge: badgesArray[i] 
+        };
+    }
+}
+
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      450,
+      300,
+      "PNG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64",
+      450,
+      300
+    );
+  });
+
+async function images()
+{
     for (let i = 0; i < 8; ++i)
     {
         imagesArray[i] = process.env.PUBLIC_URL + '/assets/item' + k++ + '.png';
-        console.log(images[i]);
+        // imagesArray[i] = await resizeFile(imagesArray[i]);
     }
-    k = 0;
 }
 
-function pngString()
+export default class Home extends React.Component
 {
-    return imagesArray[k++];
-}
-
-export default class Home extends Component
-{
-    constructor(props) {
+    constructor(props) 
+    {
         super(props);
-
-        images();
+        this.state = {
+            data: []
+          };
     }
+
+    componentWillMount()
+    {
+        k = 0;
+        images();
+        k = 0;
+        createData();
+        console.log(imagesArray);
+        this.setState(
+            {
+                data: data
+            }
+        )
+    }
+
     render()
     {
+        console.log(this.state.data);
         return (
         <html lang="en">
             <head>
@@ -56,154 +114,14 @@ export default class Home extends Component
                 <section class="py-5">
                     <div class="container px-4 px-lg-5 mt-5">
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Fancy Product</h5>
-                                            $40.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <div class="badge bg-dark text-white position-absolute" style={{top: 0.5, right: 0.5}}>Sale</div>
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Special Item</h5>
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                                            $18.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <div class="badge bg-dark text-white position-absolute" style={{top: 0.5, right: 0.5}}>Sale</div>
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Sale Item</h5>
-                                            <span class="text-muted text-decoration-line-through">$50.00</span>
-                                            $25.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Popular Item</h5>
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            $40.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <div class="badge bg-dark text-white position-absolute" style={{top: 0.5, right: 0.5}}>Sale</div>
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Sale Item</h5>
-                                            <span class="text-muted text-decoration-line-through">$50.00</span>
-                                            $25.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Fancy Product</h5>
-                                            $120.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <div class="badge bg-dark text-white position-absolute" style={{top: 0.5, right: 0.5}}>Sale</div>
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Special Item</h5>
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                                            $18.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src={pngString()} alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Popular Item</h5>
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            $40.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 ">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
+                            <ItemCard  data = {this.state.data[k++]}/>
                         </div>
                     </div>
                 </section>
@@ -214,7 +132,6 @@ export default class Home extends Component
                 <script src="js/scripts.js"></script>
             </body>
         </html>
-
         )
     }
 }

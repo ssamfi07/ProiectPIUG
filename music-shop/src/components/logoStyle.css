@@ -1,0 +1,23 @@
+/* &.brand {
+    .wordart {
+      transform: perspective(200px) rotateX(30deg) scaleY(1.65);
+      .preview {
+        font-weight: 900;
+        color: transparent;
+        background: linear-gradient(#540357, #540357);
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px #b2b2b2;
+        -webkit-background-clip: text;
+        background-clip: text;
+        letter-spacing: 0.1vw;
+        &::before {
+          @include pseudo;
+          z-index: -1;
+          color: #0dcaf0;
+          -webkit-text-fill-color: #0dcaf0;
+          -webkit-text-stroke: transparent;
+          transform: perspective(250px) translateY(-0.643em) rotateX(70deg) scale(1) translateZ(-1em);
+        }
+      }
+    }
+  } */
