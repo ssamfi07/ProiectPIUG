@@ -1,18 +1,39 @@
-// Home.js
+// AllItems.js
 
 import React from "react";
 import ItemCard from "../components/itemCard";
 import CustomNavbar from '../components/navbar'
 import dataFetcher from "../services/dataFetcher";
 import Footer from "../components/footer";
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import dataFilter from "../services/dataFilter";
 
-var k;
+
 let data = dataFetcher();
-export default class Home extends React.Component
+export default class AllItems extends React.Component
 {
+    state = {
+        input: ""
+      };
+    
+    handleChange = event =>
+    {
+        this.setState(
+        {
+            input: event.target.value
+        });
+    }
+
     render()
     {
-        {k = 0}
+        const input  = this.state.input;
+        const filteredData = dataFilter(data, input)
+        let itemsArray = [];
+        for(let i = 0; i < filteredData.length; ++i)
+        {
+            itemsArray.push(<ItemCard  data = {filteredData[i]}/>)
+        }
         return (
         <html lang="en">
             <head>
@@ -20,31 +41,25 @@ export default class Home extends React.Component
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="" />
                 <meta name="author" content="" />
-                <title>Homepage</title>
+                <title>AllItems</title>
                 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
             </head>
             <body>
                 <CustomNavbar />
-                <header class="bg-dark py-5">
-                    <div class="container px-4 px-lg-5 my-5">
-                        <div class="text-center text-white">
-                            <h1 class="display-4 fw-bolder">Shop music in style</h1>
-                            <p class="lead fw-normal text-white-50 mb-0">With this online music shop</p>
-                        </div>
-                    </div>
-                </header>
                 <section class="py-5">
                     <div class="container px-4 px-lg-5 mt-5">
+                        <InputGroup className="mb-3">
+                            <FormControl
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                placeholder = "Search"
+                                value = {input}
+                                onChange = {this.handleChange}
+                            />
+                        </InputGroup>
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
-                            <ItemCard  data = {data[k++]}/>
+                            {itemsArray}
                         </div>
                     </div>
                 </section>

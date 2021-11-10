@@ -1,7 +1,7 @@
 // Contact.js
 
 import React, {Component} from "react";
-import Navbar from '../components/navbar'
+import CustomNavbar from '../components/navbar'
 import Form from 'react-bootstrap/Form';
 
 // for email sending (max 500 per day)
@@ -72,7 +72,7 @@ export default class Contact extends Component
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
             </head>
             <body>
-                <Navbar />
+                <CustomNavbar />
                 <header class="bg-light py-5">
                     <div class="container px-4 px-lg-5 my-5 py-lg-5">
                     <Form onSubmit = {this.handleSubmit}>

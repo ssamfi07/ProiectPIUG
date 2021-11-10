@@ -2,7 +2,7 @@
 
 import React from "react";
 import Footer from "../components/footer";
-import Navbar from '../components/navbar'
+import CustomNavbar from '../components/navbar'
 import dataFetcher from "../services/dataFetcher";
 import idFetcher from "../services/idFetcher";
 import ItemCard from "../components/itemCard";
@@ -46,7 +46,7 @@ export default class Item extends React.Component
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
             </head>
             <body>
-                <Navbar />
+                <CustomNavbar />
                  <section class="py-5">
                     <div class="container px-4 px-lg-5 my-5">
                         <div class="row gx-4 gx-lg-5 align-items-center">

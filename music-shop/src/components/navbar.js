@@ -1,8 +1,8 @@
 // navbar.js
 
 import React, {Component} from "react";
-import Button from 'react-bootstrap/Button';
-import { NavLink } from "react-router-dom";
+import { Navbar, Nav,  NavDropdown}from 'react-bootstrap';
+import { NavLink, Link} from "react-router-dom";
 
 import { GoogleLogout } from 'react-google-login';
 
@@ -15,70 +15,74 @@ const responseGoogle = (response) =>
 
 const clientId = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
 
-export default class Navbar extends Component
+export default class CustomNavbar extends Component
 {
     render()
     {
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-                    <div class="container px-4 px-lg-5">
-                        <style type = "text/css">
-                            {`
-                                .btn-outline-light
+        <Navbar  sticky="top"
+            id="navbar"
+            bg="light"
+            expand="lg"
+            className="navbar navbar-dark bg-black "
+            collapseOnSelect={true}
+            >
+            <style type = "text/css">
+                {`
+                    .btn-outline-light
+                    {
+                        color: rgba(255, 255, 255, 0.55);
+                        border-width: 0;
+                    }
+                    .btn-outline-light:hover
+                    {
+                        background-color: var(--purple-1);
+                        color: #fff;
+                        border-color: #fff;
+                    }
+                `}
+            </style>
+            <Navbar.Brand className = "btn btn-outline-light" href = "/" >Music Shop</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+            <Navbar.Collapse id="basic-navbar-nav" className = "justify-content-md-center">
+                <Nav className="ml-auto">
+                    <NavLink eventKey = "1" activeClassName="nav-link active" className="nav-link" aria-current="page" to = "/">Home</NavLink>
+                    <NavLink activeClassName="nav-link active" className="nav-link" to = "/about">About</NavLink>
+                    <NavLink activeClassName="nav-link active" className="nav-link" to = "/contact">Contact Us</NavLink>
+                    <NavDropdown
+                            id="nav-dropdown-dark-example"
+                            title="Shop"
+                            menuVariant="dark"
+                            className = "bg-black"
+                    >
+                        <NavLink className="nav-link" aria-current="page" to = "/allitems">All Items</NavLink>
+                        <NavDropdown.Divider />
+                        <NavLink className="nav-link" aria-current="page" to = "/specialItems">Special Items</NavLink>
+                        <NavLink className="nav-link" aria-current="page" to = "/saleItems">Sale Items</NavLink>
+                    </NavDropdown>
+                    <form class="d-flex ms-lg-5">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+                        {false && <GoogleLogout
+                            clientId={clientId}
+                            buttonText="Logout"
+                            onSuccess={responseGoogle}
+                            style = {
                                 {
-                                    color: rgba(255, 255, 255, 0.55);
-                                    border-width: 0;
+                                    display: "hidden"
                                 }
-                                .btn-outline-light:hover
-                                {
-                                    background-color: var(--purple-1);
-                                    color: #fff;
-                                    border-color: #fff;
-                                }
-                            `}
-                        </style>
-                        <Button href = "/" variant="outline-light">Music Shop</Button>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" aria-current="page" to = "/">Home</NavLink></li>
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" to = "/about">About</NavLink></li>
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" to = "/contact">Contact Us</NavLink></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="pages/allProducts.html">All Products</a></li>
-                                        <li><hr class="dropdown-divider" /></li>
-                                        <li><a class="dropdown-item" href="pages/popularItems.html">Popular Items</a></li>
-                                        <li><a class="dropdown-item" href="pages/specialItems.html">Special Items</a></li>
-                                        <li><a class="dropdown-item" href="pages/saleItems.html">Sale Items</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <form class="d-flex">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="bi-cart-fill me-1"></i>
-                                    Cart
-                                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                                </button>
-                            </form>
-                        </div>
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="nav-link" to = "/login">Log In</NavLink></li>
-                                <li class="nav-item"><NavLink activeClassName="nav-link active" className="btn btn-primary" to = "/register">Sign Up</NavLink></li>
-                                {false && <GoogleLogout
-                                    clientId={clientId}
-                                    buttonText="Logout"
-                                    onSuccess={responseGoogle}
-                                    style = {
-                                        {
-                                            display: "hidden"
-                                        }
-                                    }
-                                />}
-                            </ul>
-                    </div>
-        </nav>
+                            }
+                        />}
+                        <NavLink activeClassName="nav-link active" className="nav-link d-flex ms-lg-5" to = "/login">Log In</NavLink>
+                        <NavLink activeClassName="nav-link active" className="btn btn-primary align-self-start" to = "/register">Sign Up</NavLink>
+                        
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
         )
     }
 }

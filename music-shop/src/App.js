@@ -8,7 +8,9 @@ import Register from './pages/Register';
 import Contact from './pages/Contact';
 import Item from './pages/Item'
 import ScrollToTop from './components/scrollToTop';
-
+import AllItems from './pages/AllItems';
+import SaleItems from './pages/SaleItems';
+import SpecialItems from './pages/SpecialItems';
 
 import 'bootstrap/dist/css/styles.css'
 
@@ -23,6 +25,9 @@ class App extends Component {
             <Route path = '/' element = {<Home />} />
             <Route path = '/about' element = {<About />} />
             <Route path = "/contact" element={<Contact />} />
+            <Route path = '/allitems' element = {<AllItems />} />
+            <Route path = '/saleitems' element = {<SaleItems />} />
+            <Route path = '/specialitems' element = {<SpecialItems/>} />
 
             <Route path = "/item/:id" element={<Item />} />
 
