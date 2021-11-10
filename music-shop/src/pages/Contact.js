@@ -3,10 +3,10 @@
 import React, {Component} from "react";
 import Navbar from '../components/navbar'
 import Form from 'react-bootstrap/Form';
-import './styles.css'
 
 // for email sending (max 500 per day)
 import { send } from 'emailjs-com';
+import Footer from "../components/footer";
 
 export default class Contact extends Component
 {
@@ -88,9 +88,7 @@ export default class Contact extends Component
                     </Form>
                     </div>
                 </header>
-                <footer class="py-lg-5 bg-dark stick-bottom">
-                    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Music Shop 2021</p></div>
-                </footer>
+                <Footer />
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="js/scripts.js"></script>
             </body>

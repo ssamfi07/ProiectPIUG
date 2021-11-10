@@ -1,18 +1,39 @@
 // Item.js
 
 import React from "react";
+import Footer from "../components/footer";
 import Navbar from '../components/navbar'
-import './styles.css'
+import dataFetcher from "../services/dataFetcher";
+import idFetcher from "../services/idFetcher";
+import ItemCard from "../components/itemCard";
+import Carousel from 'react-bootstrap/Carousel'
 
-
+let data = dataFetcher();
 export default class Item extends React.Component
 {
-    constructor(props) {
+    constructor(props) 
+    {
         super(props);
-
+        this.state = 
+        {
+            path: location.pathname,
+            id: idFetcher(location.pathname, "id")
+        }
+        this.id = this.state.id;
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot)
+    {
+        if(this.props.location !== prevProps.location)
+        {
+            console.log(location.pathname);
+        }
+    }
+
     render()
     {
+        let k = 0;
+        console.log(this.state.path);
         return (
         <html lang="en">
             <head>
@@ -29,13 +50,17 @@ export default class Item extends React.Component
                  <section class="py-5">
                     <div class="container px-4 px-lg-5 my-5">
                         <div class="row gx-4 gx-lg-5 align-items-center">
-                            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
                             <div class="col-md-6">
-                                <div class="small mb-1">SKU: BST-498</div>
-                                <h1 class="display-5 fw-bolder">Shop item template</h1>
+                                <img class="card-img-top mb-5 mb-md-0" src={data[this.id].image} alt="..." />
+                            </div>
+                            <div class="col-md-6">
+                            
+                                <div class="small mb-1">Product id: {this.id}</div>
+                                <h1 class="display-5 fw-bolder">{data[this.id].name}</h1>
+                                {data[this.id].badge ? <div class="badge bg-danger text-white" style={{top: 0.5, right: 0.5}}>Sale</div> : null}
                                 <div class="fs-5 mb-5">
-                                    <span class="text-decoration-line-through">$45.00</span>
-                                    <span>$40.00</span>
+                                    {data[this.id].oldPrice ? <span class="text-decoration-line-through">${data[this.id].oldPrice}</span> : null}
+                                    <span>${data[this.id].price}</span>
                                 </div>
                                 <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                                 <div class="d-flex">
@@ -52,87 +77,38 @@ export default class Item extends React.Component
                 <section class="py-5 bg-light">
                     <div class="container px-4 px-lg-5 mt-5">
                         <h2 class="fw-bolder mb-4">Related products</h2>
+                        {/* <Carousel variant = "dark">
+                            <Carousel.Item>
+                                <ItemCard data = {data[k++]}/>
+                                <Carousel.Caption>
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <ItemCard data = {data[k++]}/>
+                                <Carousel.Caption>
+                                <h3>Second slide label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item >
+                            <Carousel.Item>
+                                <ItemCard data = {data[k++]}/>
+                                <Carousel.Caption>
+                                <h3>Third slide label</h3>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        </Carousel> */}
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Fancy Product</h5>
-                                            $40.00 - $80.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <div class="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Special Item</h5>
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                                            $18.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <div class="badge bg-dark text-white position-absolute" style={{top: '0.5rem', right: '0.5rem'}}>Sale</div>
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Sale Item</h5>
-                                            <span class="text-muted text-decoration-line-through">$50.00</span>
-                                            $25.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <h5 class="fw-bolder">Popular Item</h5>
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            $40.00
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ItemCard data = {data[k++]}/>
+                            <ItemCard data = {data[k++]}/>
+                            <ItemCard data = {data[k++]}/>
+                            <ItemCard data = {data[k++]}/>
                         </div>
                     </div>
                 </section>
-                <footer class="py-5 bg-dark">
-                    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Music Shop 2021</p></div>
-                </footer>
+                <Footer />
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
             </body>
         </html>

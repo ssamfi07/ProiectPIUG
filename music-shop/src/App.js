@@ -7,19 +7,24 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
 import Item from './pages/Item'
+import ScrollToTop from './components/scrollToTop';
+
+
+import 'bootstrap/dist/css/styles.css'
 
 class App extends Component {
 
   render() {
     return (
       <Router >
+        <ScrollToTop />
         <div>
           <Routes>
             <Route path = '/' element = {<Home />} />
             <Route path = '/about' element = {<About />} />
             <Route path = "/contact" element={<Contact />} />
 
-            <Route path = "/item/:name" element={<Item />} />
+            <Route path = "/item/:id" element={<Item />} />
 
             <Route path = '/login' element = {<Login />} />
             <Route path = "/register" element={<Register />} />

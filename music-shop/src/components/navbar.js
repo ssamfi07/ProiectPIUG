@@ -1,7 +1,6 @@
 // navbar.js
 
 import React, {Component} from "react";
-import '../pages/styles.css'
 import Button from 'react-bootstrap/Button';
 import { NavLink } from "react-router-dom";
 

@@ -1,8 +1,8 @@
 // About.js
 
 import React, {Component} from "react";
+import Footer from "../components/footer";
 import Navbar from '../components/navbar'
-import './styles.css'
 
 export default class About extends Component
 {
@@ -54,9 +54,7 @@ export default class About extends Component
                     </div>
                 </header>
                 
-                <footer class="py-5 bg-dark flex-sm-shrink h-100">
-                    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Music Shop 2021</p></div>
-                </footer>
+                <Footer />
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="js/scripts.js"></script>
             </body>
