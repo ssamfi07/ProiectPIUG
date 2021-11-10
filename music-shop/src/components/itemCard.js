@@ -20,7 +20,23 @@ export default class ItemCard extends React.Component
                     <img class="card-img-top" src={data.image} alt="..."/>
                     <div class="card-body p-4">
                         <div class="text-center">
-                            <Link to = {`/item/${data.id}`} className = "nav-link"><span><h5 class="fw-bolder">{data.name}</h5></span></Link>
+                            <style type = "text/css">
+                                {`
+                                    .btn-outline-light
+                                    {
+                                        color: black;
+                                        border-width: 0;
+                                        text-align:center;
+                                    }
+                                    .btn-outline-light:hover
+                                    {
+                                        background-color: var(--purple-1);
+                                        color: #fff;
+                                        border-color: #fff;
+                                    }
+                                `}
+                            </style>
+                            <Link to = {`/item/${data.id}`} className = "nav-link btn btn-outline-light"><span><h5 class="fw-bolder">{data.name}</h5></span></Link>
                             <div class="d-flex justify-content-center small text-warning mb-2">
                                 <div class="bi-star-fill"></div>
                                 <div class="bi-star-fill"></div>

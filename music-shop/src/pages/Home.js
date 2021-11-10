@@ -26,7 +26,7 @@ export default class Home extends React.Component
             </head>
             <body>
                 <CustomNavbar />
-                <header class="bg-dark py-5">
+                <header class="bg-dark py-4">
                     <div class="container px-4 px-lg-5 my-5">
                         <div class="text-center text-white">
                             <h1 class="display-4 fw-bolder">Shop music in style</h1>
